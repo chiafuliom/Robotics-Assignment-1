@@ -1,0 +1,81 @@
+#include <kipr/botball.h>
+//DECLARE VARIABLES
+int  l_motor = 0;
+int  r_motor = 2;
+int pause = 5000; 
+int right_bumper = 4;
+int left_bumper = 1;
+int counter = 0 ; 
+
+int main()
+{
+ 
+  while(1){
+   //go forward
+ forward();
+    
+   //look for collision 
+  
+  if(digital(right_bumper)){
+  counter= counter +1; 
+  backward(); 
+  turn_left(); 
+   
+
+  }
+    if(digital(left_bumper)){
+  counter= counter +1; 
+  backward(); 
+  turn_right(); 
+
+  }
+   
+   if(counter==3){
+ 		evasive();
+     counter=0;
+
+  }
+   
+  
+   
+      }
+    return 0;
+}
+//function definitions//
+void forward (){
+   motor(l_motor,100);
+   motor(r_motor,75);
+
+}
+void backward (){
+   motor(l_motor,-100);
+   motor(r_motor,-75);
+   msleep(1000);
+   ao(); 
+
+}
+void turn_right (){
+  motor(l_motor,100);
+   motor(r_motor,-75);
+    msleep(900);
+    ao();
+}
+    
+void turn_left (){
+  motor(l_motor,-100);
+   motor(r_motor,75);
+    msleep(900);
+    ao();
+}
+
+void evasive(){
+ motor(l_motor,-100);
+   motor(r_motor,-75);
+   msleep(3000);
+   ao(); 
+ motor(l_motor,-100);
+   motor(r_motor,75);
+    msleep(1300);
+    ao();
+}
+    
