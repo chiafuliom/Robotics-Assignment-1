@@ -23,15 +23,15 @@ int main()
    
 
   }
-    if(digital(left_bumper)){
+    if(digital(left_bumper)){ 
   counter= counter +1; 
   backward(); 
   turn_right(); 
 
   }
    
-   if(counter==3){
- 		evasive();
+   if(counter==3){  //if either bumper is triggered three times consecutively, backward function runs for +3 seconds and left turn 
+ 		evasive();     
      counter=0;
 
   }
