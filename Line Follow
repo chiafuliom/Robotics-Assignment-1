@@ -1,0 +1,61 @@
+
+#include <kipr/botball.h>
+int  l_motor = 0;
+int  r_motor = 2;
+int frontsensor = 0;
+int bottomthing = 5;
+int targetthing = 1000; 
+int fast = 60;
+int slow = 30;
+int pause = 1000; 
+int up = 1650 ;
+int down = 380;
+
+int main()
+
+{
+ findline(); 
+ followline(); 
+   victory(); 
+
+}
+void forward (){
+   motor(l_motor,fast+25);
+   motor(r_motor,fast);
+}
+
+void turnright (){
+  motor(l_motor,slow+70);
+   motor(r_motor,slow);
+}
+void turnleft (){
+  motor(l_motor,slow);
+   motor(r_motor,slow+40);
+  
+}
+void findline(){
+  while (analog(bottomthing)<targetthing){
+    forward(); 
+    
+  }
+}
+void followline(){
+   while (analog(frontsensor)<2800){
+  
+    if (analog(bottomthing)<targetthing){
+  turnright();
+      }
+  if(analog(bottomthing)>targetthing){
+   turnleft(); 
+    }
+   }
+}
+void victory  (){
+   enable_servos();
+   set_servo_position(0,down);
+   msleep (pause);
+   set_servo_position(0,up);
+   msleep(pause);
+   set_servo_position(0,down);
+   msleep (pause);
+  }
