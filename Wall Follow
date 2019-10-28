@@ -1,0 +1,46 @@
+#include <kipr/botball.h>
+int  l_motor = 0;
+int  r_motor = 2;
+int frontsensor = 0;
+int sidesensor = 2;
+int main()
+{
+followwall();
+ 
+turnleft2();
+ 
+followwall();
+}
+
+//function definitions//
+void followwall(){
+  while (analog(frontsensor)<2800){
+  forward();
+  if (analog(sidesensor)>2913){
+    turnleft();
+  }
+  if (analog(sidesensor)< 2918){
+    turnright();
+  }
+ 
+}
+}
+void forward (){
+   motor(l_motor,100);
+   motor(r_motor,75);
+}
+
+void turnleft2 (){
+  motor(l_motor,-100);
+   motor(r_motor,75);
+  msleep (451);
+}
+void turnright (){
+  motor(l_motor,100);
+   motor(r_motor,-75);
+}
+void turnleft (){
+  motor(l_motor,-100);
+   motor(r_motor,75);
+ 
+}
