@@ -1,0 +1,25 @@
+#include <kipr/botball.h>
+int green = 0;
+int port = 0;
+int greenX;
+int main()
+{
+ 
+ 
+    enable_servos (0);
+  set_servo_position(port, 1200);
+      camera_open ();
+ 
+     while(1){
+       camera_update();
+greenX = get_object_center_x(green, 0);
+       
+       
+       printf("greenX = %d\n", greenX );
+      set_servo_position (port, greenX * 7.5 );
+       msleep (100);
+       
+}
+    return 0;
+}
+
