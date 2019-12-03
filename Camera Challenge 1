@@ -1,0 +1,48 @@
+#include <kipr/botball.h>
+int green = 0;
+int red = 1;
+int blue = 2;
+int main()
+{
+   camera_open ();
+   while(1){
+  camera_update();
+  findcolor();
+  }
+    return 0;
+}
+
+void  findcolor (){
+  seegreen();
+  seered ();
+  seeblue ();
+}
+void seegreen (){
+if((get_object_count(green))>0){
+    printf(" Thats green\n");
+    }
+}
+
+void seered (){
+  if((get_object_count(red))>0){
+    printf(" Thats Red\n");
+    }
+}
+
+void seeblue (){
+  if((get_object_count(blue))>0){
+    printf(" Thats Blue \n");
+    }
+}
+
+ 
+ 
+ 
+ 
+ 
+
+void seegreen (){
+if((get_object_count(green))>0){
+    printf(" Thats green\n");
+    }
+}
