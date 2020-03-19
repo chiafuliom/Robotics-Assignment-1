@@ -2,9 +2,9 @@
 //DECLARE VARIABLES
 int  l_motor = 0;
 int  r_motor = 2;
-int pause = 5000; 
-int right_bumper = 4;
-int left_bumper = 1;
+//int pause = 5000;   YOU HAD TWO DECLARATION FOR PAUSE.  I COMMENTED THIS OUT.
+int right_bumper = 9; //RIGHT BUMPER IS PORT 9  YOU HAD 4 HERE
+int left_bumper = 8;  //LEFT BUMPER IS PORT 8  YOU HAD 1 HERE
 int counter = 0 ; 
 int speed = 100 ; 
 int reversespeed= -100 ; 
@@ -12,39 +12,41 @@ int pause = 1000 ;
 
 int main()
 {
- 
+ // THIS IS AN INFINITE LOOP.  WHERE WILL YOUR "break;" COMMAND GO?
   while(1){
    //go forward
- forward();
+	  printf("in the loop\n"); //ADDED FOR FEEDBACK
+	forward();
     
    //look for collision 
   
-  if(digital(right_bumper)){          //when bumper is triggered, turn into the wall to trigger opposite bumper 
-  turn_left(); 
-  }
-    if(digital(left_bumper)){   //second bumper triggered, end of program 
-  turn_right(); 
-  }
-   
-  ao();                  //shutdown 
+		if(digital(right_bumper)){          //when bumper is triggered, turn into the wall to trigger opposite bumper 
+		turn_left(); 
+		}
+		if(digital(left_bumper)){   //second bumper triggered, end of program 
+		turn_right(); 
+		}
+	}
+	//I HAD TO MOVE LINES 30-31 OUTSIDE OF THE LOOP.
+	printf("exited the loop\n");  // ADDED FOR FEEDBACK
+	ao();                  //shutdown 
     return 0;
-}
+} //I HAD TO ADD THIS CLOSE CURLY BRACE FOR YOU
 //function definitions//
 void forward (){
    motor(l_motor,speed);
    motor(r_motor,speed);
 } 
-}
+//}  THIS WAS AN UNNECESSARY CURLY BRACE
 void turn_right (){
   motor(l_motor,speed);
    motor(r_motor,reversespeed);
-    msleep(pause);
+    msleep(pause); //YOU SHOULD NOT HAVE MSLEEPS SINCE WE ARE USING SENSORS TO STOP
     ao();
 }    
 void turn_left (){
   motor(l_motor,reversespeed);
    motor(r_motor,speed);
-    msleep(pause);
+    msleep(pause); //YOU SHOULD NOT HAVE MSLEEPS SINCE WE ARE USING SENSORS TO STOP
     ao();
 }
-
